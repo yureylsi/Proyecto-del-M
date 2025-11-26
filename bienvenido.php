@@ -1,4 +1,4 @@
-<h1 style="text-align:center; margin-top:20px;">Bienvenido al sistema</h1>
+<h1 style="text-align:center; margin-top:20px;">Bienvenidos a Infinite Flowers</h1>
 
 <div style="text-align:center; max-width:800px; margin:auto;">
 
