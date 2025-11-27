@@ -30,7 +30,7 @@ nav a {
     transition: 0.3s ease;
 }
 
-/* HOVER DE LOS ENLACES */
+
 nav a:hover {
     color: #ffe1c2;
     text-shadow: 0 0 8px rgba(255, 240, 220, 0.8);
