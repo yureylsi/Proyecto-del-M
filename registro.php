@@ -1,18 +1,18 @@
 <?php
-include("conexion.php");
+require("conexion.php");
 
 $mensaje = ""; 
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     $nombre = $_POST["nombre"];
-    $apellidos = $_POST["apellidos"];
+    $apellido = $_POST["apellido"];
     $correo = $_POST["correo"];
-    $contrasena = $_POST["contrasena"];
+    $contraseña = $_POST["contraseña"];
 
    
-    $sql = "INSERT INTO usuario (nombre, apellidos, correo, contraseña)
-            VALUES ('$nombre', '$apellidos', '$correo', '$contrasena')";
+    $sql = "INSERT INTO usuario (id,nombre, apellido, correo, contraseña)
+            VALUES (Null'$nombre', '$apellidos', '$correo', '$contraseña')";
 
     if ($conexion->query($sql) === TRUE) {
         $mensaje = "Registro exitoso";
