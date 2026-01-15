@@ -1,5 +1,6 @@
 /* Fondo gris claro */
 body {
+<<<<<<< HEAD
   font-family: "Times New Roman", Times, serif;
   margin: 0;
   padding: 0;
@@ -43,9 +44,57 @@ nav a:hover {
   gap: 25px;
   padding: 40px;
   flex-wrap: wrap;
+=======
+    font-family: 'Times New Roman', Times, serif;
+    margin: 0;
+    padding: 0;
+    background: #faf7f2; 
 }
 
+
+header {
+    background: peru;
+    color: white;
+    padding: 15px;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.2);
+}
+
+nav {
+    margin-right: 40px;
+}
+
+nav a {
+    margin: 0 15px;
+    color: white;
+    font-size: 20px;
+    font-weight: bold;
+    text-decoration: none;
+    transition: 0.3s ease;
+}
+
+
+nav a:hover {
+    color: #ffe1c2;
+    text-shadow: 0 0 8px rgba(255, 240, 220, 0.8);
+}
+
+
+.cards {
+    display: flex;
+    justify-content: center;
+    gap: 25px;
+    padding: 40px;
+    flex-wrap: wrap;
+>>>>>>> Ismel
+}
+
+
 .card {
+<<<<<<< HEAD
   width: 180px;
   background: #ffffff; /* blanco para contraste limpio */
   padding: 15px;
@@ -79,4 +128,26 @@ footer {
   font-size: 18px;
   margin-top: 40px;
   width: 100%;
+=======
+    width: 200px;
+    background: white;
+    padding: 15px;
+    text-align: center;
+    border-radius: 15px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.1);
+    transition: 0.3s ease;
+>>>>>>> Ismel
 }
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+
+.card img {
+    width: 100%;
+    border-radius: 10px;
+    margin-bottom: 10px;
+}
+
