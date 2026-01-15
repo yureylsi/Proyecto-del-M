@@ -151,3 +151,28 @@ footer {
     margin-bottom: 10px;
 }
 
+/*Footer*/
+
+.folder {
+    display: flex;
+    gap: 20px;
+    justify-content: center;
+}
+
+.card {
+    background-color: white;
+    width: 250px;
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.card h2 {
+    margin-bottom: 10px;
+    color: #333;
+}
+
+.card p {
+    color: #555;
+    font-size: 14px;
+}
