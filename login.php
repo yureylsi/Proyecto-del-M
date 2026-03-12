@@ -3,7 +3,10 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <link rel="stylesheet" href="estilos.css">
+    <meta charset="UTF-8">
+    <title>Iniciar sesión</title>
+    <link rel="stylesheet" href="login.css">
+    <link rel="stylesheet" href="login.css">
 </head>
 <body>
 
@@ -13,6 +16,7 @@
     <input type="email" name="correo" placeholder="Correo" required>
     <input type="password" name="contraseña" placeholder="Contraseña" required>
     <button type="submit" name="entrar">Entrar</button>
+    <a href="registro.php" class="crear" >Crear cuenta</a>
 </form>
 
 </body>
@@ -25,13 +29,13 @@ if (isset($_POST["entrar"])) {
     $correo = $_POST["correo"];
     $password = $_POST["contraseña"];
 
-    // Consulta SQL
+   
     $sql = "SELECT * FROM usuario WHERE correo='$correo' AND contraseña='$password'";
-    $resultado = $conexion->query($sql);
+    $resultado = $mysqli->query($sql);
 
-    // Validación corregida
+    
     if ($resultado && $resultado->num_rows > 0) {
-        header("Location: bienvenido.php");
+        header("Location: index2.html");
         exit();
     } else {
         echo "<script>alert('Datos incorrectos');</script>";
