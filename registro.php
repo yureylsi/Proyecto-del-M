@@ -10,19 +10,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $correo = $_POST["correo"];
     $contraseña = $_POST["contraseña"];
 
-<<<<<<< HEAD
-   
     $sql = "INSERT INTO usuario (id,nombre, apellido, correo, contraseña)
-            VALUES (Null'$nombre', '$apellidos', '$correo', '$contraseña')";
-=======
-    $sql = "INSERT INTO usuario (nombre, apellidos, correo, contraseña)
-            VALUES ('$nombre', '$apellidos', '$correo', '$contrasena')";
->>>>>>> Yureylis
+            VALUES (Null,'$nombre', '$apellido', '$correo', '$contraseña')";
 
     if ($mysqli->query($sql) === TRUE) {
         $mensaje = "Registro exitoso";
     } else {
-        $mensaje = "Error al registrar";
+        $mensaje = "Error al registrar";    
     }
 }
 ?>
