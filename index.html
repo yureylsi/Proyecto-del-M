@@ -107,9 +107,66 @@
 span{
     color: green;
 }
+
+/*Modal corousel*/
+.modal-pedir{
+  display:none;
+  position:fixed;
+  top:0;
+  left:0;
+  width:100%;
+  height:100%;
+  background:rgba(0,0,0,0.5);
+}
+
+.modal-contenido{
+  background:#f5ecff;
+  width:300px;
+  padding:20px;
+  margin:150px auto;
+  text-align:center;
+  border-radius:10px;
+  border:2px solid #c8a2ff;
+}
+
+.cerrar{
+  float:right;
+  font-size:20px;
+  cursor:pointer;
+  color:#7a3eb1;
+}
+
+.cerrar:hover{
+  color:#a56de2;
+}
+
+.tooltip{
+  position: relative;
+  display: inline-block;
+}
+
+.tooltip .tooltiptext{
+  visibility: hidden;
+  width: 180px;
+  background-color:#a56de2;
+  color:#fff;
+  text-align: center;
+  border-radius: 6px;
+  padding: 5px;
+  position: absolute;
+  z-index: 1;
+  bottom: 125%;
+  left: 50%;
+  margin-left: -90px;
+  opacity: 0;
+  transition: opacity 0.3s;
+}
+
+.tooltip:hover .tooltiptext{
+  visibility: visible;
+  opacity: 1;
+}
 </style>
-
-
 
     <section class="container" id="productos">
         <h2 class="section-title">Nuestros Productos</h2>
@@ -122,7 +179,7 @@ span{
                         <h3>Arreglos Personalizados</h3>
                         <p>Diseños únicos creados por nuestros floristas expertos.</p>
                         <p class="price">Desde <span>$1,850</span></p>
-                        <button class="btn-pedir">Realizar pedido</button>
+                        <button id="btnAbrirModal" class="btn-pedir">Realizar pedido</button>
                     </div>
                 </div>
 
@@ -132,7 +189,7 @@ span{
                         <h3>Rosas Eternas Azules</h3>
                         <p>Bouquet elegante de rosas eternas azules, para ocasiones especiales</p>
                         <p class="price">Desde <span>$1,300</span></p>
-                        <button class="btn-pedir">Realizar pedido</button>
+                        <button id="btnAbrirModal" class="btn-pedir">Realizar pedido</button>
                     </div>
                 </div>
 
@@ -142,7 +199,7 @@ span{
                         <h3>Cajas de Rosas Eternas</h3>
                         <p>Rosas preservadas que mantienen su belleza por años.</p>
                         <p class="price">Desde <span>$1,500</span></p>
-                        <button class="btn-pedir">Realizar pedido</button>
+                        <button id="btnAbrirModal" class="btn-pedir">Realizar pedido</button>
                     </div>
                 </div>
 
@@ -152,7 +209,7 @@ span{
                         <h3>Ramos de Girasoles</h3>
                         <p>Aporta luz y alegría con nuestros vibrantes girasoles.</p>
                         <p class="price">Desde <span>$600</span></p>
-                        <button class="btn-pedir">Realizar pedido</button>
+                        <button id="btnAbrirModal" class="btn-pedir">Realizar pedido</button>
                     </div>
                 </div>
 
@@ -162,7 +219,7 @@ span{
                         <h3>Tulipanes Eternos</h3>
                         <p>La delicadeza de los tulipanes en una variedad de colores.</p>
                         <p class="price">Desde <span>$1,100</span></p>
-                        <button class="btn-pedir">Realizar pedido</button>  
+                        <button id="btnAbrirModal" class="btn-pedir" >Realizar pedido</button> 
                     </div>
                 </div>
             </div>
@@ -189,8 +246,8 @@ span{
     </section>
 
 
-    <!-- SECCIÓN DE REPRESENTANTES ELIMINADA -->
-
+    
+    
     <!-- FOOTER MÁS PEQUEÑO -->
     <footer>
         <div class="container">
@@ -211,19 +268,43 @@ span{
                     <div class="social-icons">
                         <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.instagram.com/infinite_flowers48" title="Instagram"><i
-                                class="fab fa-instagram"></i></a>
-                        <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                            class="fab fa-instagram"></i></a>
+                            <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
+                        </div>
+                        <p>info@infiniteflowers.com</p>
                     </div>
-                    <p>info@infiniteflowers.com</p>
+                </div>
+                
+                <div class="footer-bottom">
+                    <p>&copy; En INFINITE FLOWERS, cada detalle florece para siempre <i class="fas fa-heart"></i></p>
                 </div>
             </div>
+        </footer>
 
-            <div class="footer-bottom">
-                <p>&copy; En INFINITE FLOWERS, cada detalle florece para siempre <i class="fas fa-heart"></i></p>
+        
+    <div id="modal-pedir" class="modal-pedir">
+        <div class="modal-contenido">
+            <span class="cerrar">&times;</span>
+
+            <h2>Debes iniciar sesión</h2>
+            <p>Para realizar un pedido necesitas iniciar sesión o registrarte.</p>
+            <br>
+
+            <div class="tooltip">
+                <a href="login.php">Iniciar sesión</a>
+                <span class="tooltiptext">Si tienes cuenta inicia sesión</span>
             </div>
-        </div>
-    </footer>
 
+            <br>o<br>
+
+            <div class="tooltip">
+                <a href="registro.php">Registrarse</a>
+                <span class="tooltiptext">Si no tienes cuenta regístrate</span>
+            </div>
+
+        </div>
+    </div>
+        
     <!-- MODAL -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal">
@@ -333,6 +414,20 @@ span{
             }
         }
 
+        // Modal
+        let modal = document.getElementById("modal-pedir");
+        let botones = document.querySelectorAll("#btnAbrirModal");
+        let cerrar = document.querySelector(".cerrar");
+
+        botones.forEach(function(boton){
+            boton.addEventListener("click", function(){
+                modal.style.display = "block";
+            });
+        });
+
+        cerrar.addEventListener("click", function(){
+            modal.style.display = "none";
+        });
 
     </script>
 </body>
