@@ -14,7 +14,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $sql = "INSERT INTO usuario (nombre, apellidos, correo, contraseña)
             VALUES ('$nombre', '$apellidos', '$correo', '$contrasena')";
 
-    if ($conexion->query($sql) === TRUE) {
+    if ($mysqli->query($sql) === TRUE) {
         $mensaje = "Registro exitoso";
     } else {
         $mensaje = "Error al registrar";
@@ -31,10 +31,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
 
-<div class="contenedor">
-
-    <?php if ($mensaje == "") { ?>
     
+<div class="contenedor">
+        
+        
+    <?php if ($mensaje == "") { ?>
     <h2>Registro de Usuarios</h2>
 
     <form action="registro.php" method="POST">
@@ -56,12 +57,13 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     </form>
 
     <?php } else { ?>
-    
-    <p class="mensaje"><?php echo $mensaje; ?></p>
 
-    <a class="boton-volver" href="index.html">Volver al inicio</a>
+        <p class="mensaje"><?php echo $mensaje; ?></p>
 
-    <?php } ?>
+        <a href="index.html" class="boton-volver">Volver al inicio</a>
+
+    <?php } ?>    
+        
 
 </div>
 

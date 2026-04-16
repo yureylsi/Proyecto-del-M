@@ -1,80 +1,4 @@
 <!DOCTYPE html>
-<<<<<<< HEAD
-<html>
-  <head>
-    <meta charset="UTF-8" />
-    <title>Proyecto</title>
-    <link rel="stylesheet" href="estilos.css" />
-  </head>
-  <body>
-    <header>
-      <h1>
-        YILNS INFINITE FLOWERS
-        <h2>Grupo#2</h2>
-      </h1>
-      <nav>
-        <a href="index.html">Inicio</a>
-        <a href="registro.php">Registro</a>
-        <a href="login.php">Iniciar sesión</a>
-      </nav>
-    </header>
-
-    <section class="titulo-seccion">
-      <h2>Representantes</h2>
-    </section>
-
-    <div class="cards">
-      <div class="card">
-        <img src="IMG/noemi.jpeg" />
-        <h3>Noemi</h3>
-      </div>
-
-      <div class="card">
-        <img src="IMG/yureylis.jpeg" />
-        <h3>Yureylis</h3>
-      </div>
-
-      <div class="card">
-        <img src="IMG/lucy.jpeg" />
-        <h3>Lucy</h3>
-      </div>
-
-      <div class="card">
-        <img src="IMG/ismel.jpeg" />
-        <h3>Ismel</h3>
-      </div>
-    </div>
-
-    <footer>
-      <div class="folder">
-        <div class="card-footer">
-          <h2>Título 1</h2>
-          <p>
-            Este es el contenido de la primera card. Aquí puedes escribir una
-            breve descripción.
-          </p>
-        </div>
-
-        <div class="card-footer">
-          <h2>Título 2</h2>
-          <p>
-            Este es el contenido de la segunda card. Ideal para información
-            clara y corta.
-          </p>
-        </div>
-
-        <div class="card-footer">
-          <h2>Título 3</h2>
-          <p>
-            Este es el contenido de la tercera card. Puedes usarlo para destacar
-            algo importante.
-          </p>
-        </div>
-      </div>
-    </footer>
-  </body>
-</html>
-=======
 <html lang="es">
 
 <head>
@@ -95,154 +19,171 @@
             <nav>
                 <a href="#inicio"><i class="fas fa-home"></i> Inicio</a>
                 <a href="#productos"><i class="fas fa-shopping-bag"></i> Productos</a>
+                <a href="#" id="btnAbrirModal"><i class="fas fa-cart-arrow-down"></i> Pedido</a>
                 <a href="#nosotros"><i class="fas fa-users"></i> Nosotros</a>
-                <!-- REPRESENTANTES ELIMINADO DEL MENÚ -->
-                <a href="login.php"><i class="fas fa-sign-in-alt"></i> Iniciar sesión</a>
+                <a href="index.html"><i class="fas fa-sign-in-alt"></i> Cerrar sesión</a>
             </nav>
         </div>
     </header>
 
+    <dialog id="modalPedido" class="modal-estilo">
+        <div class="container-modal">
+            <div class="modal-header">
+                <h2 class="h2"  style="margin: 0;">Pedido de Flores Eternas</h2>
+                <button id="btnCerrarModal" class="close-x">&times;</button>
+            </div>
+
+
+            <div class="logo-reference" style="letter-spacing: 0.3em; text-align: center;">INFINITE FLOWERS</div>
+            <p class="subtitle">Completa el formulario para realizar tu pedido personalizado</p>
+
+            <!-- Tu formulario original -->
+            <form class="form-horizontal" action="guardar.php" method="POST">
+                <div class="form-group">
+                  <label for="nombre_cli">Nombre</label>
+                  <input type="text" class="form-control" id="nombre_cli" name="nombre_cli" placeholder="Escribe tu nombre completo" required>
+                </div>
+
+                <div class="form-group">
+                  <label for="telefono_cli">Teléfono</label>
+                  <input type="tel" class="form-control" id="telefono_cli" name="telefono_cli" placeholder="Ej: 809-000-0000" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="tipo_de_arreglo">Tipo de arreglo</label>
+                    <div class="col-sm-10">
+                        <select class="form-control" id="tipo_de_arreglo" name="tipo_de_arreglo">
+                            <option value="Ramo pequeño (15-20 flores)">Ramo pequeño (15-20 flores)</option>
+                            <option value="Ramo mediano (25-30 flores)">Ramo mediano (25-30 flores)</option>
+                            <option value="Ramo grande (35-45 flores)">Ramo grande (35-45 flores)</option>
+                            <option value="Arreglo en caja especial">Arreglo en caja especial</option>
+					        <option value="Corona floral para eventos">Corona floral para eventos</option>
+					        <option value="Cesta de flores mixtas">Cesta de flores mixtas</option>
+					        <option value="Arreglo personalizado (especificar abajo)">Arreglo personalizado (especificar abajo)</option>
+				        </select>
+				    </div>
+				</div>
+
+				<div class="form-group">
+					<label for="color_de_flores">Color de flores</label>
+					<div class="col-sm-10">
+						<select class="form-control" id="color_de_flores" name="color_de_flores">
+							<option value="Rojo pasión">Rojo pasión</option>
+							<option value="Rosado suave">Rosado suave</option>
+							<option value="Blanco pureza">Blanco pureza</option>
+							<option value="Amarillo brillante">Amarillo brillante</option>
+							<option value="Violeta elegante">Violeta elegante</option>
+							<option value="Mixto (combinación especial)">Mixto (combinación especial)</option>
+							<option value="Arreglo personalizado (especificar abajo)">Arreglo personalizado (especificar abajo)</option>
+						</select>
+					</div>
+				</div>
+
+                <div class="form-group">
+					<label for="mensaje">Mensaje para la tarjeta</label>
+					<div class="col-sm-10">
+						<textarea type="text" class="form-control" id="mensaje" name="mensaje" placeholder="Escribe el mensaje que deseas incluir en la tarjeta..." required></textarea>
+					</div>
+				</div>
+
+                <div class="form-group">
+					<label for="detalle">Detalle del arreglo</label>
+					<div class="col-sm-10">
+						<textarea type="text" class="form-control" id="detalle" name="detalle" placeholder="Describe con detalle lo que deseas incluir en tu arreglo: tipo de flores específicas, cantidad exacta, colores preferidos, decoraciones adicionales (moños, mariposas, luces, cintas), dedicatorias especiales, etc." required></textarea>
+					</div>
+				</div>
+          
+                <div class="form-group">
+                  <label for="fecha_de_entrega">Fecha de entrega</label>
+                  <input type="date" class="form-control" id="fecha_de_entrega" name="fecha_de_entrega" required>
+                </div>
+
+                <div class="form-group">
+                    <label for="direccion">Direccion</label>
+                    <input type="text" class="form-control" name="direccion" id="direccion" placeholder="Ingresa tu direccion"  required>
+                </div>
+            
+                <div class="button-group">
+                  <button type="submit" class="btn-pedido">Confirmar Pedido</button>
+                </div>
+            </form>
+        </div>
+    </dialog>
+
+    <style>
+        .carousel-container{
+            overflow-x: auto;
+            overflow-y: hidden;
+            padding: 20px 0;
+        }
+
+        .products-carousel{
+            display: flex;
+            flex-direction: row;
+            gap: 20px;
+            width: max-content;
+        }
+
+        .product-card{
+            min-width: 250px;
+            max-width: 250px;
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+            flex-shrink: 0;
+        }
+
+        .product-img{
+            width: 100%;
+            height: 200px;
+            object-fit: cover;
+        }
+
+        .product-info{
+            padding: 15px;
+            text-align: center;
+        }
+
+        .price{
+            font-weight: bold;
+            color: #e91e63;
+        }
+
+        .precio-boton{
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .btn-btn{
+            background: #e91e63;
+            color: white;
+            padding: 6px 12px;
+            border-radius: 6px; 
+            text-decoration: none;
+            font-size: 14px;
+            transition: 0.3s;
+            display: inline-block;
+            margin-top: 8px;
+        }
+
+        .btn-btn:hover{
+            background: #c2185b;
+        }
+
+        span{
+            color: green;
+        }
+    </style>
     <section class="hero" id="inicio">
         <div class="container">
             <h2>Flores Infinitas para Momentos Eternos</h2>
             <p>En INFINITE FLOWERS creamos arreglos florales únicos que capturan la belleza de la naturaleza y la
                 convierten en arte. Nuestras flores frescas y diseños exclusivos harán especial cualquier ocasión.</p>
             <a href="#productos" class="btn">Ver Nuestros Productos</a>
-
-            <!-- MENSAJE DE REGISTRO -->
-            <div class="register-message">
-                ¿No tienes una cuenta? <span class="register-link" id="registerPrompt">Regístrate aquí</span> para
-                acceder a ofertas exclusivas
-            </div>
         </div>
     </section>
-
-<style>
-
-.carousel-container{
-    overflow-x: auto;
-    overflow-y: hidden;
-    padding: 20px 0;
-}
-
-.products-carousel{
-    display: flex;
-    flex-direction: row;
-    gap: 20px;
-    width: max-content;
-}
-
-.product-card{
-    min-width: 250px;
-    max-width: 250px;
-    background: #fff;
-    border-radius: 10px;
-    overflow: hidden;
-    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
-    flex-shrink: 0;
-}
-
-.product-img{
-    width: 100%;
-    height: 200px;
-    object-fit: cover;
-}
-
-.product-info{
-    padding: 15px;
-    text-align: center;
-}
-
-.price{
-    font-weight: bold;
-    color: #e91e63;
-}
-
-.precio-boton{
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.btn-pedir{
-    background: #e91e63;
-    color: white;
-    padding: 6px 12px;
-    border-radius: 6px;
-    text-decoration: none;
-    font-size: 14px;
-    transition: 0.3s;
-    display: inline-block;
-    margin-top: 8px;
-}
-
-.btn-pedir:hover{
-    background: #c2185b;
-}
-
-span{
-    color: green;
-}
-
-/*Modal corousel*/
-.modal-pedir{
-  display:none;
-  position:fixed;
-  top:0;
-  left:0;
-  width:100%;
-  height:100%;
-  background:rgba(0,0,0,0.5);
-}
-
-.modal-contenido{
-  background:#f5ecff;
-  width:300px;
-  padding:20px;
-  margin:150px auto;
-  text-align:center;
-  border-radius:10px;
-  border:2px solid #c8a2ff;
-}
-
-.cerrar{
-  float:right;
-  font-size:20px;
-  cursor:pointer;
-  color:#7a3eb1;
-}
-
-.cerrar:hover{
-  color:#a56de2;
-}
-
-.tooltip{
-  position: relative;
-  display: inline-block;
-}
-
-.tooltip .tooltiptext{
-  visibility: hidden;
-  width: 180px;
-  background-color:#a56de2;
-  color:#fff;
-  text-align: center;
-  border-radius: 6px;
-  padding: 5px;
-  position: absolute;
-  z-index: 1;
-  bottom: 125%;
-  left: 50%;
-  margin-left: -90px;
-  opacity: 0;
-  transition: opacity 0.3s;
-}
-
-.tooltip:hover .tooltiptext{
-  visibility: visible;
-  opacity: 1;
-}
-</style>
 
     <section class="container" id="productos">
         <h2 class="section-title">Nuestros Productos</h2>
@@ -255,17 +196,17 @@ span{
                         <h3>Arreglos Personalizados</h3>
                         <p>Diseños únicos creados por nuestros floristas expertos.</p>
                         <p class="price">Desde <span>$1,850</span></p>
-                        <button id="btnAbrirModal" class="btn-pedir">Realizar pedido</button>
+                        <button class="btn-btn" onclick="document.getElementById('modalPedido').showModal()">Realizar pedido</button>
                     </div>
                 </div>
 
                 <div class="product-card">
                     <img src="IMG/flor3.jpeg" alt="Plantas de interior" class="product-img">
                     <div class="product-info">
-                        <h3>Rosas Eternas Azules</h3>
-                        <p>Bouquet elegante de rosas eternas azules, para ocasiones especiales</p>
+                        <h3>Rosas  Eternas azules</h3>
+                        <p>Bouquet elegante de rosas eternas azules, para ocasiones especiales </p>
                         <p class="price">Desde <span>$1,300</span></p>
-                        <button id="btnAbrirModal" class="btn-pedir">Realizar pedido</button>
+                        <button class="btn-btn" onclick="document.getElementById('modalPedido').showModal()">Realizar pedido</button>
                     </div>
                 </div>
 
@@ -275,7 +216,7 @@ span{
                         <h3>Cajas de Rosas Eternas</h3>
                         <p>Rosas preservadas que mantienen su belleza por años.</p>
                         <p class="price">Desde <span>$1,500</span></p>
-                        <button id="btnAbrirModal" class="btn-pedir">Realizar pedido</button>
+                        <button class="btn-btn" onclick="document.getElementById('modalPedido').showModal()">Realizar pedido</button>
                     </div>
                 </div>
 
@@ -285,7 +226,7 @@ span{
                         <h3>Ramos de Girasoles</h3>
                         <p>Aporta luz y alegría con nuestros vibrantes girasoles.</p>
                         <p class="price">Desde <span>$600</span></p>
-                        <button id="btnAbrirModal" class="btn-pedir">Realizar pedido</button>
+                        <button class="btn-btn" onclick="document.getElementById('modalPedido').showModal()">Realizar pedido</button>
                     </div>
                 </div>
 
@@ -295,7 +236,7 @@ span{
                         <h3>Tulipanes Eternos</h3>
                         <p>La delicadeza de los tulipanes en una variedad de colores.</p>
                         <p class="price">Desde <span>$1,100</span></p>
-                        <button id="btnAbrirModal" class="btn-pedir" >Realizar pedido</button> 
+                        <button class="btn-btn" onclick="document.getElementById('modalPedido').showModal()">Realizar pedido</button>  
                     </div>
                 </div>
             </div>
@@ -321,9 +262,8 @@ span{
         </div>
     </section>
 
+    <!-- SECCIÓN DE REPRESENTANTES ELIMINADA -->
 
-    
-    
     <!-- FOOTER MÁS PEQUEÑO -->
     <footer>
         <div class="container">
@@ -344,43 +284,19 @@ span{
                     <div class="social-icons">
                         <a href="#" title="Facebook"><i class="fab fa-facebook-f"></i></a>
                         <a href="https://www.instagram.com/infinite_flowers48" title="Instagram"><i
-                            class="fab fa-instagram"></i></a>
-                            <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
-                        </div>
-                        <p>info@infiniteflowers.com</p>
+                                class="fab fa-instagram"></i></a>
+                        <a href="#" title="TikTok"><i class="fab fa-tiktok"></i></a>
                     </div>
-                </div>
-                
-                <div class="footer-bottom">
-                    <p>&copy; En INFINITE FLOWERS, cada detalle florece para siempre <i class="fas fa-heart"></i></p>
+                    <p>info@infiniteflowers.com</p>
                 </div>
             </div>
-        </footer>
 
-        
-    <div id="modal-pedir" class="modal-pedir">
-        <div class="modal-contenido">
-            <span class="cerrar">&times;</span>
-
-            <h2>Debes iniciar sesión</h2>
-            <p>Para realizar un pedido necesitas iniciar sesión o registrarte.</p>
-            <br>
-
-            <div class="tooltip">
-                <a href="login.php">Iniciar sesión</a>
-                <span class="tooltiptext">Si tienes cuenta inicia sesión</span>
+            <div class="footer-bottom">
+                <p>&copy; En INFINITE FLOWERS, cada detalle florece para siempre <i class="fas fa-heart"></i></p>
             </div>
-
-            <br>o<br>
-
-            <div class="tooltip">
-                <a href="registro.php">Registrarse</a>
-                <span class="tooltiptext">Si no tienes cuenta regístrate</span>
-            </div>
-
         </div>
-    </div>
-        
+    </footer>
+
     <!-- MODAL -->
     <div class="modal-overlay" id="modalOverlay">
         <div class="modal">
@@ -490,23 +406,26 @@ span{
             }
         }
 
-        // Modal
-        let modal = document.getElementById("modal-pedir");
-        let botones = document.querySelectorAll("#btnAbrirModal");
-        let cerrar = document.querySelector(".cerrar");
+       /*Modal Pedido*/
+        const modal = document.getElementById('modalPedido');
+        const btnAbrir = document.getElementById('btnAbrirModal');
+        const btnCerrar = document.getElementById('btnCerrarModal');
 
-        botones.forEach(function(boton){
-            boton.addEventListener("click", function(){
-                modal.style.display = "block";
-            });
+        btnAbrir.addEventListener("click", function(){
+            modal.showModal();
         });
 
-        cerrar.addEventListener("click", function(){
-            modal.style.display = "none";
+        btnCerrar.addEventListener("click", function(){
+            modal.close();
+        });
+
+        modal.addEventListener("click", function(e){
+            if (e.target === modal){
+                modal.close();
+            }
         });
 
     </script>
 </body>
 
 </html>
->>>>>>> Yureylis
