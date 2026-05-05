@@ -39,20 +39,22 @@
 
         <!-- FORMULARIO DENTRO DEL MODAL -->
 <form id="formPedido" class="form-horizontal">
-
 <div class="form-group">
   <label>Nombre</label>
-  <input type="text" id="nombre_cli" required>
+  <input type="text" id="nombre_cli" required 
+    placeholder="Ejemplo: Juana Esperanza">
 </div>
 
 <div class="form-group">
   <label>Teléfono</label>
-  <input type="tel" id="telefono_cli" required>
+  <input type="tel" id="telefono_cli" required 
+    placeholder="Ejemplo: 849 568 2458">
 </div>
 
 <div class="form-group">
   <label>Correo</label>
-  <input type="email" id="correo" required>
+  <input type="email" id="correo" required 
+    placeholder="Ejemplo: correo@ejemplo.com">
 </div>
 
 <div class="form-group">
@@ -77,14 +79,14 @@
 
 <div class="form-group">
   <label>Mensaje</label>
-  <textarea id="mensaje" required></textarea>
+  <textarea id="mensaje" required 
+    placeholder="Ejemplo: Feliz cumpleaños, te quiero mucho 💐"></textarea>
 </div>
 
 <div class="form-group">
   <label>Detalle</label>
   <textarea id="detalle" required 
-    placeholder="Ejemplo: Describe aquí lo que se necesita hacer, incluyendo detalles claros como fechas, acciones y cualquier información relevante.">
-  </textarea>
+    placeholder="Ejemplo: Entregar en la mañana, tocar el timbre y avisar por teléfono al llegar."></textarea>
 </div>
 
 <div class="form-group">
@@ -94,7 +96,8 @@
 
 <div class="form-group">
   <label>Dirección</label>
-  <input type="text" id="direccion" required>
+  <input type="text" id="direccion" required 
+    placeholder="Ejemplo: Calle Reforma 123, Col. Centro, CDMX">
 </div>
 
 <button type="submit" class="btn-pedido">Confirmar Pedido</button>
