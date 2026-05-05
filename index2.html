@@ -37,76 +37,69 @@
             <div class="logo-reference" style="letter-spacing: 0.3em; text-align: center;">INFINITE FLOWERS</div>
             <p class="subtitle">Completa el formulario para realizar tu pedido personalizado</p>
 
-            <!-- Tu formulario original -->
-            <form class="form-horizontal" action="guardar.php" method="POST">
-                <div class="form-group">
-                  <label for="nombre_cli">Nombre</label>
-                  <input type="text" class="form-control" id="nombre_cli" name="nombre_cli" placeholder="Escribe tu nombre completo" required>
-                </div>
+        <!-- FORMULARIO DENTRO DEL MODAL -->
+<form id="formPedido" class="form-horizontal">
 
-                <div class="form-group">
-                  <label for="telefono_cli">Teléfono</label>
-                  <input type="tel" class="form-control" id="telefono_cli" name="telefono_cli" placeholder="Ej: 809-000-0000" required>
-                </div>
+<div class="form-group">
+  <label>Nombre</label>
+  <input type="text" id="nombre_cli" required>
+</div>
 
-                <div class="form-group">
-                    <label for="tipo_de_arreglo">Tipo de arreglo</label>
-                    <div class="col-sm-10">
-                        <select class="form-control" id="tipo_de_arreglo" name="tipo_de_arreglo">
-                            <option value="Ramo pequeño (15-20 flores)">Ramo pequeño (15-20 flores)</option>
-                            <option value="Ramo mediano (25-30 flores)">Ramo mediano (25-30 flores)</option>
-                            <option value="Ramo grande (35-45 flores)">Ramo grande (35-45 flores)</option>
-                            <option value="Arreglo en caja especial">Arreglo en caja especial</option>
-					        <option value="Corona floral para eventos">Corona floral para eventos</option>
-					        <option value="Cesta de flores mixtas">Cesta de flores mixtas</option>
-					        <option value="Arreglo personalizado (especificar abajo)">Arreglo personalizado (especificar abajo)</option>
-				        </select>
-				    </div>
-				</div>
+<div class="form-group">
+  <label>Teléfono</label>
+  <input type="tel" id="telefono_cli" required>
+</div>
 
-				<div class="form-group">
-					<label for="color_de_flores">Color de flores</label>
-					<div class="col-sm-10">
-						<select class="form-control" id="color_de_flores" name="color_de_flores">
-							<option value="Rojo pasión">Rojo pasión</option>
-							<option value="Rosado suave">Rosado suave</option>
-							<option value="Blanco pureza">Blanco pureza</option>
-							<option value="Amarillo brillante">Amarillo brillante</option>
-							<option value="Violeta elegante">Violeta elegante</option>
-							<option value="Mixto (combinación especial)">Mixto (combinación especial)</option>
-							<option value="Arreglo personalizado (especificar abajo)">Arreglo personalizado (especificar abajo)</option>
-						</select>
-					</div>
-				</div>
+<div class="form-group">
+  <label>Correo</label>
+  <input type="email" id="correo" required>
+</div>
 
-                <div class="form-group">
-					<label for="mensaje">Mensaje para la tarjeta</label>
-					<div class="col-sm-10">
-						<textarea type="text" class="form-control" id="mensaje" name="mensaje" placeholder="Escribe el mensaje que deseas incluir en la tarjeta..." required></textarea>
-					</div>
-				</div>
+<div class="form-group">
+  <label>Tipo de arreglo</label>
+  <select id="tipo_de_arreglo">
+    <option>Ramo pequeño</option>
+    <option>Ramo mediano</option>
+    <option>Ramo grande</option>
+    <option>Caja de rosas</option>
+  </select>
+</div>
 
-                <div class="form-group">
-					<label for="detalle">Detalle del arreglo</label>
-					<div class="col-sm-10">
-						<textarea type="text" class="form-control" id="detalle" name="detalle" placeholder="Describe con detalle lo que deseas incluir en tu arreglo: tipo de flores específicas, cantidad exacta, colores preferidos, decoraciones adicionales (moños, mariposas, luces, cintas), dedicatorias especiales, etc." required></textarea>
-					</div>
-				</div>
-          
-                <div class="form-group">
-                  <label for="fecha_de_entrega">Fecha de entrega</label>
-                  <input type="date" class="form-control" id="fecha_de_entrega" name="fecha_de_entrega" required>
-                </div>
+<div class="form-group">
+  <label>Color</label>
+  <select id="color_de_flores">
+    <option>Rojo</option>
+    <option>Blanco</option>
+    <option>Rosado</option>
+    <option>Mixto</option>
+  </select>
+</div>
 
-                <div class="form-group">
-                    <label for="direccion">Direccion</label>
-                    <input type="text" class="form-control" name="direccion" id="direccion" placeholder="Ingresa tu direccion"  required>
-                </div>
-            
-                <div class="button-group">
-                  <button type="submit" class="btn-pedido">Confirmar Pedido</button>
-                </div>
-            </form>
+<div class="form-group">
+  <label>Mensaje</label>
+  <textarea id="mensaje" required></textarea>
+</div>
+
+<div class="form-group">
+  <label>Detalle</label>
+  <textarea id="detalle" required 
+    placeholder="Ejemplo: Describe aquí lo que se necesita hacer, incluyendo detalles claros como fechas, acciones y cualquier información relevante.">
+  </textarea>
+</div>
+
+<div class="form-group">
+  <label>Fecha entrega</label>
+  <input type="date" id="fecha_de_entrega" required>
+</div>
+
+<div class="form-group">
+  <label>Dirección</label>
+  <input type="text" id="direccion" required>
+</div>
+
+<button type="submit" class="btn-pedido">Confirmar Pedido</button>
+
+</form>
         </div>
     </dialog>
 
@@ -425,7 +418,56 @@
             }
         });
 
+        <!-- TODO tu contenido HTML arriba -->
+
+    
+    document.getElementById("formPedido").addEventListener("submit", async function(e){
+        e.preventDefault();
+
+        const datos = {
+            nombre_cli: document.getElementById("nombre_cli").value,
+            telefono_cli: document.getElementById("telefono_cli").value,
+            correo: document.getElementById("correo").value,
+            tipo_de_arreglo: document.getElementById("tipo_de_arreglo").value,
+            color_de_flores: document.getElementById("color_de_flores").value,
+            mensaje: document.getElementById("mensaje").value,
+            detalle: document.getElementById("detalle").value,
+            fecha_de_entrega: document.getElementById("fecha_de_entrega").value,
+            direccion: document.getElementById("direccion").value
+        };
+
+        try {
+
+            // 1️⃣ Guardar en BD
+            await fetch("guardar.php", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(datos)
+            });
+
+            // 2️⃣ Enviar a n8n
+            await fetch("https://yureee.app.n8n.cloud/webhook-test/Compra", {
+                method: "POST",
+                headers: {
+                    "Content-Type": "application/json"
+                },
+                body: JSON.stringify(datos)
+            });
+
+            alert("✅ Pedido enviado correctamente");
+            document.getElementById("formPedido").reset();
+
+        } catch(error){
+            console.error(error);
+            alert("❌ Error al procesar el pedido");
+        }
+    });
     </script>
+
+</body>
+</html>
 </body>
 
 </html>
