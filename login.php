@@ -31,7 +31,7 @@ if (isset($_POST["entrar"])) {
 
    
     $sql = "SELECT * FROM usuario WHERE correo='$correo' AND contraseña='$password'";
-    $resultado = $mysqli->query($sql);
+    $resultado = $conexion->query($sql);
 
     
     if ($resultado && $resultado->num_rows > 0) {

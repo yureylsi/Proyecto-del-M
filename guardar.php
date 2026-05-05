@@ -18,7 +18,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     ('$nombre_cli', '$telefono_cli', '$tipo_de_arreglo', '$color_de_flores', '$mensaje', '$detalle', '$fecha_de_entrega', '$direccion')";
 }
 
-$resultado = $mysqli->query($sql);
+$resultado = $conexion->query($sql); 
 
 ?>
 
