@@ -16,10 +16,16 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $stmt->bind_param("ssss", $nombre, $apellidos, $correo, $contrasena);
 
     if ($stmt->execute()) {
-        $mensaje = "Registro exitoso";
+    header("Location: login.php?registro=exitoso");
+    exit();
+    } else {
+    // Si el error es el código 1062 (Duplicate entry en MySQL)
+    if ($mysqli->errno == 1062) {
+        $mensaje = "Ese correo electrónico ya está registrado. Intenta con otro.";
     } else {
         $mensaje = "Error al registrar: " . $mysqli->error;
     }
+}
 }
 ?>
 <!DOCTYPE html>
