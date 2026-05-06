@@ -5,17 +5,15 @@ $mensaje = "";
 
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
+   // ... dentro de tu registro.php ...
     $nombre = $_POST["nombre"];
     $apellidos = $_POST["apellidos"];
     $correo = $_POST["correo"];
-    $contrasena = $_POST["contrasena"];
+    $contrasena = $_POST["contrasena"]; // La tomamos directo del POST
 
-    // 🔐 Encriptar contraseña (MUY IMPORTANTE)
-    $contrasenaHash = password_hash($contrasena, PASSWORD_DEFAULT);
-
-    // INSERT SEGURO
+    // CAMBIO: Guardamos $contrasena directamente en lugar del Hash
     $stmt = $mysqli->prepare("INSERT INTO usuario (nombre, apellidos, correo, contraseña) VALUES (?, ?, ?, ?)");
-    $stmt->bind_param("ssss", $nombre, $apellidos, $correo, $contrasenaHash);
+    $stmt->bind_param("ssss", $nombre, $apellidos, $correo, $contrasena);
 
     if ($stmt->execute()) {
         $mensaje = "Registro exitoso";

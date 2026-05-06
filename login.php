@@ -1,7 +1,33 @@
 <?php 
 include("conexion.php"); 
+session_start(); // Línea importante para sesiones
 
 $mensaje = "";
+
+if (isset($_POST["entrar"])) {
+    $correo = $_POST["correo"];
+    $contrasena = $_POST["contrasena"];
+
+    // Usamos $mysqli que viene de conexion.php
+    $stmt = $mysqli->prepare("SELECT * FROM usuario WHERE correo = ?");
+    $stmt->bind_param("s", $correo);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
+
+    if ($resultado->num_rows > 0) {
+        $usuario = $resultado->fetch_assoc();
+
+        // CAMBIO A TEXTO PLANO (Comparación directa)
+        if ($contrasena === $usuario["contraseña"]) { 
+            header("Location: index2.html");
+            exit();
+        } else {
+            $mensaje = "Contraseña incorrecta";
+        }
+    } else {
+        $mensaje = "Usuario no encontrado";
+    }
+}
 ?>
 
 <!DOCTYPE html>
@@ -26,34 +52,3 @@ $mensaje = "";
 
 </body>
 </html>
-
-<?php
-
-if (isset($_POST["entrar"])) {
-
-    $correo = $_POST["correo"];
-    $contrasena = $_POST["contrasena"];
-
-    // CONSULTA SEGURA
-    $stmt = $mysqli->prepare("SELECT * FROM usuario WHERE correo = ?");
-    $stmt->bind_param("s", $correo);
-    $stmt->execute();
-    $resultado = $stmt->get_result();
-
-    if ($resultado->num_rows > 0) {
-
-        $usuario = $resultado->fetch_assoc();
-
-        // VERIFICAR CONTRASEÑA ENCRIPTADA
-        if (password_verify($contrasena, $usuario["contraseña"])) {
-            header("Location: index2.html");
-            exit();
-        } else {
-            $mensaje = "Contraseña incorrecta";
-        }
-
-    } else {
-        $mensaje = "Usuario no encontrado";
-    }
-}
-?>
