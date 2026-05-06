@@ -1,5 +1,5 @@
 <?php
-$host = "localhost";
+$host = "";
 $usuario = "grupo2";
 $password = "12345";
 $base_datos = "registro"; // 👈 CAMBIA ESTE NOMBRE
