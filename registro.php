@@ -12,7 +12,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $contrasena = $_POST["contrasena"]; // La tomamos directo del POST
 
     // CAMBIO: Guardamos $contrasena directamente en lugar del Hash
-    $stmt = $mysqli->prepare("INSERT INTO usuario (nombre, apellidos, correo, contraseña) VALUES (?, ?, ?, ?)");
+    $stmt = $mysqli->prepare("INSERT INTO usuario (Nombre, Apellidos, Correo, Contraseña) VALUES (?, ?, ?, ?)");
     $stmt->bind_param("ssss", $nombre, $apellidos, $correo, $contrasena);
 
     if ($stmt->execute()) {
