@@ -18,7 +18,7 @@ if (isset($_POST["entrar"])) {
         $usuario = $resultado->fetch_assoc();
 
         // CAMBIO A TEXTO PLANO (Comparación directa)
-        if ($contrasena === $usuario["contraseña"]) { 
+        if ($contrasena === $usuario["Contraseña"]) { 
             header("Location: index2.html");
             exit();
         } else {
