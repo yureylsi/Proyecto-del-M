@@ -1,11 +1,14 @@
-<?php include("conexion.php"); ?>
+<?php 
+include("conexion.php"); 
+
+$mensaje = "";
+?>
 
 <!DOCTYPE html>
 <html>
 <head>
     <meta charset="UTF-8">
     <title>Iniciar sesión</title>
-    <link rel="stylesheet" href="login.css">
     <link rel="stylesheet" href="login.css">
 </head>
 <body>
@@ -14,10 +17,12 @@
 
 <form method="POST">
     <input type="email" name="correo" placeholder="Correo" required>
-    <input type="password" name="contraseña" placeholder="Contraseña" required>
+    <input type="password" name="contrasena" placeholder="Contraseña" required>
     <button type="submit" name="entrar">Entrar</button>
-    <a href="registro.php" class="crear" >Crear cuenta</a>
+    <a href="registro.php" class="crear">Crear cuenta</a>
 </form>
+
+<p><?php echo $mensaje; ?></p>
 
 </body>
 </html>
@@ -27,19 +32,28 @@
 if (isset($_POST["entrar"])) {
 
     $correo = $_POST["correo"];
-    $password = $_POST["contraseña"];
+    $contrasena = $_POST["contrasena"];
 
-   
-    $sql = "SELECT * FROM usuario WHERE correo='$correo' AND contraseña='$password'";
-    $resultado = $conexion->query($sql);
+    // CONSULTA SEGURA
+    $stmt = $mysqli->prepare("SELECT * FROM usuario WHERE correo = ?");
+    $stmt->bind_param("s", $correo);
+    $stmt->execute();
+    $resultado = $stmt->get_result();
 
-    
-    if ($resultado && $resultado->num_rows > 0) {
-        header("Location: index2.html");
-        exit();
+    if ($resultado->num_rows > 0) {
+
+        $usuario = $resultado->fetch_assoc();
+
+        // VERIFICAR CONTRASEÑA ENCRIPTADA
+        if (password_verify($contrasena, $usuario["contraseña"])) {
+            header("Location: index2.html");
+            exit();
+        } else {
+            $mensaje = "Contraseña incorrecta";
+        }
+
     } else {
-        echo "<script>alert('Datos incorrectos');</script>";
+        $mensaje = "Usuario no encontrado";
     }
 }
-
 ?>

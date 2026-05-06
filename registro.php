@@ -10,13 +10,17 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $correo = $_POST["correo"];
     $contrasena = $_POST["contrasena"];
 
-    $sql = "INSERT INTO usuario (nombre, apellidos, correo, contraseña)
-            VALUES ('$nombre', '$apellidos', '$correo', '$contrasena')";
+    // 🔐 Encriptar contraseña (MUY IMPORTANTE)
+    $contrasenaHash = password_hash($contrasena, PASSWORD_DEFAULT);
 
-    if ($mysqli->query($sql) === TRUE) {
+    // INSERT SEGURO
+    $stmt = $mysqli->prepare("INSERT INTO usuario (nombre, apellidos, correo, contraseña) VALUES (?, ?, ?, ?)");
+    $stmt->bind_param("ssss", $nombre, $apellidos, $correo, $contrasenaHash);
+
+    if ($stmt->execute()) {
         $mensaje = "Registro exitoso";
     } else {
-        $mensaje = "Error al registrar";
+        $mensaje = "Error al registrar: " . $mysqli->error;
     }
 }
 ?>
@@ -30,11 +34,9 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
 <body>
 
-    
 <div class="contenedor">
         
-        
-    <?php if ($mensaje == "") { ?>
+<?php if ($mensaje == "") { ?>
     <h2>Registro de Usuarios</h2>
 
     <form action="registro.php" method="POST">
@@ -55,15 +57,14 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     </form>
 
-    <?php } else { ?>
+<?php } else { ?>
 
-        <p class="mensaje"><?php echo $mensaje; ?></p>
+    <p class="mensaje"><?php echo $mensaje; ?></p>
 
-        <a href="index.html" class="boton-volver">Volver al inicio</a>
+    <a href="index.html" class="boton-volver">Volver al inicio</a>
 
-    <?php } ?>    
+<?php } ?>    
         
-
 </div>
 
 </body>
