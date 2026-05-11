@@ -28,7 +28,7 @@
 
     <section class="hero" id="inicio" style="
         background: linear-gradient(rgba(214, 51, 132, 0.6), rgba(111, 66, 193, 0.6)),
-        url('https://www.canva.com/es_mx/fondos-pantalla/plantillas/florales/');
+        url('https://i.pinimg.com/1200x/9e/00/e7/9e00e762bd0c180ff8b11577240d3d6c.jpg');
         background-size: cover;
         background-position: center;
         background-repeat: no-repeat;
@@ -253,9 +253,6 @@ span{
         </div>
     </section>
 
-
-    
-    
     <!-- FOOTER MÁS PEQUEÑO -->
     <footer>
         <div class="container">
@@ -315,23 +312,36 @@ span{
         
     <!-- MODAL -->
     <div class="modal-overlay" id="modalOverlay">
-        <div class="modal">
-            <button class="modal-close" id="closeModalBtn">&times;</button>
-            <h2>🌸 ¡Bienvenido! 🌸</h2>
-            <p>Descubre nuestras flores eternas y arreglos exclusivos. Regístrate para acceder a promociones especiales.
-            </p>
-
-            <div class="modal-buttons">
-                <a href="registro.php" class="modal-btn primary">Registrarse ahora</a>
-                <div class="modal-divider">o</div>
-                <a href="login.php" class="modal-btn secondary">Iniciar sesión</a>
+    <div class="modal" style="max-width: 500px;"> <button class="modal-close" id="closeModalBtn">&times;</button>
+        
+        <h2 style="color: #e91e63;">🌸 Nuestra Identidad 🌸</h2>
+        
+        <div style="text-align: left; margin-top: 20px;">
+            <div style="margin-bottom: 15px;">
+                <h3 style="font-size: 1.1em; color: #333; margin-bottom: 5px;">Misión</h3>
+                <p style="font-size: 14px; color: #666; line-height: 1.5;">
+                    Nos dedicamos a crear flores eternas de alta calidad, porque creemos que cada momento especial merece ser recordado, para brindar a nuestros clientes belleza y recuerdos que perduren en el tiempo.
+                </p>
             </div>
 
-            <p style="margin-top: 15px; font-size: 13px; color: #666;">
-                ¿Ya tienes cuenta? <a href="login.php" style="color: var(--primary-color);">Inicia sesión</a>
-            </p>
+            <div style="margin-bottom: 15px;">
+                <h3 style="font-size: 1.1em; color: #333; margin-bottom: 5px;">Visión</h3>
+                <p style="font-size: 14px; color: #666; line-height: 1.5;">
+                    Ser la empresa líder en flores eternas, reconocida por transformar momentos especiales en recuerdos duraderos y por brindar productos de calidad que emocionen y conecten con las personas.
+                </p>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <h3 style="font-size: 1.1em; color: #333; margin-bottom: 5px;">Valores</h3>
+                <ul style="font-size: 14px; color: #666; line-height: 1.5; padding-left: 20px;">
+                    <li><strong>Calidad:</strong> Ofrecer productos duraderos y cuidadosamente elaborados.</li>
+                    <li><strong>Emoción:</strong> Ofrecer productos duraderos y cuidadosamente elaborados.</li>
+                    <li><strong>Innovación:</strong> Buscar siempre nuevas formas de mejorar y sorprender a nuestros clientes.</li>
+                    <li><strong>Compromiso:</strong> Atender con dedicación a cada cliente, asegurando su satisfacción.</li>
+                    <li><strong>Respeto por la naturaleza:</strong> Valorar y cuidar los recursos naturales al crear nuestras flores.</li>
+                </ul>
+            </div>
         </div>
-    </div>
 
     <script>
         document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {

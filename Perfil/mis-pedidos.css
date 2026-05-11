@@ -1,0 +1,122 @@
+:root {
+  --primary: #e91e63;
+  --secondary: #8e24aa;
+  --bg: #fdf2f8;
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background-color: var(--bg);
+  margin: 0;
+  color: #444;
+}
+
+.navbar {
+  background: linear-gradient(to right, var(--primary), var(--secondary));
+  padding: 15px 30px;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+.container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 0 20px;
+}
+
+h2 {
+  color: var(--primary);
+  font-weight: 600;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.grid-pedidos {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+  gap: 20px;
+  margin-top: 30px;
+}
+
+.card-pedido {
+  background: white;
+  border-radius: 20px;
+  padding: 20px;
+  position: relative;
+  overflow: hidden;
+  border: none;
+  box-shadow: 0 10px 20px rgba(233, 30, 99, 0.05);
+  transition: transform 0.3s ease;
+}
+
+.card-pedido:hover {
+  transform: translateY(-5px);
+}
+
+.card-pedido::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 6px;
+  height: 100%;
+  background: linear-gradient(to bottom, var(--primary), var(--secondary));
+}
+
+.status {
+  background: #fff1f6;
+  color: var(--primary);
+  padding: 5px 12px;
+  border-radius: 50px;
+  font-size: 12px;
+  font-weight: bold;
+  display: inline-block;
+  margin-bottom: 10px;
+}
+
+.card-pedido h3 {
+  margin: 0;
+  font-size: 18px;
+  color: #333;
+}
+
+.info-item {
+  font-size: 14px;
+  margin: 10px 0;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
+.info-item i {
+  color: var(--secondary);
+  width: 20px;
+}
+
+.btn-volver {
+  display: inline-block;
+  margin-top: 30px;
+  text-decoration: none;
+  color: var(--primary);
+  font-weight: 600;
+  border: 2px solid var(--primary);
+  padding: 10px 25px;
+  border-radius: 50px;
+  transition: 0.3s;
+}
+
+.btn-volver:hover {
+  background: var(--primary);
+  color: white;
+}
+
+.empty-state {
+  text-align: center;
+  padding: 50px;
+  background: white;
+  border-radius: 20px;
+}

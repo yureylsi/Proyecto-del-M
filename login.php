@@ -1,6 +1,7 @@
 <?php 
+// 1. Incluir conexión y asegurar que la variable se llame $mysqli o $conexion
 include("conexion.php"); 
-session_start(); // Línea importante para sesiones
+session_start();
 
 $mensaje = "";
 
@@ -8,8 +9,18 @@ if (isset($_POST["entrar"])) {
     $correo = $_POST["correo"];
     $contrasena = $_POST["contrasena"];
 
-    // Usamos $mysqli que viene de conexion.php
-    $stmt = $mysqli->prepare("SELECT * FROM usuario WHERE correo = ?");
+    // 2. IMPORTANTE: Revisa si en tu conexion.php usas $mysqli o $conexion
+    // Si usas $conexion, cambia $mysqli por $conexion abajo
+    if (isset($mysqli)) {
+        $db = $mysqli;
+    } elseif (isset($conexion)) {
+        $db = $conexion;
+    } else {
+        die("Error: No se encontró la variable de conexión en conexion.php");
+    }
+
+    // 3. Consulta usando los nombres exactos de tu tabla (Correo con C mayúscula)
+    $stmt = $db->prepare("SELECT * FROM usuario WHERE Correo = ?");
     $stmt->bind_param("s", $correo);
     $stmt->execute();
     $resultado = $stmt->get_result();
@@ -17,9 +28,15 @@ if (isset($_POST["entrar"])) {
     if ($resultado->num_rows > 0) {
         $usuario = $resultado->fetch_assoc();
 
-        // CAMBIO A TEXTO PLANO (Comparación directa)
+        // 4. Comparación de contraseña (Contraseña con C mayúscula y ñ)
         if ($contrasena === $usuario["Contraseña"]) { 
-            header("Location: index2.html");
+            
+            // Guardamos los datos en la sesión
+            $_SESSION['id_usuario'] = $usuario['ID']; 
+            $_SESSION['nombre_usuario'] = $usuario['Nombre'];
+
+            // Redirigir al index principal
+            header("Location: index2.html"); 
             exit();
         } else {
             $mensaje = "Contraseña incorrecta";
@@ -29,6 +46,10 @@ if (isset($_POST["entrar"])) {
     }
 }
 ?>
+
+<?php if($mensaje != ""): ?>
+    <div style="color: red;"><?php echo $mensaje; ?></div>
+<?php endif; ?>
 
 <!DOCTYPE html>
 <html>

@@ -21,7 +21,20 @@
                 <a href="#productos"><i class="fas fa-shopping-bag"></i> Productos</a>
                 <a href="#" id="btnAbrirModal"><i class="fas fa-cart-arrow-down"></i> Pedido</a>
                 <a href="#nosotros"><i class="fas fa-users"></i> Nosotros</a>
-                <a href="index.html"><i class="fas fa-sign-in-alt"></i> Cerrar sesión</a>
+                <div class="perfil-dropdown">
+                    <button type="button" class="perfil-btn" id="btnPerfil">
+                        <i class="fas fa-user-circle"></i> Perfil
+                    </button>
+    
+                    <div class="dropdown-content" id="menuDesplegable">
+                        <a href="Perfil/mis-pedidos.php">
+                            <i class="fas fa-shopping-bag"></i> Mis Pedidos
+                        </a>
+                        <a href="index.html" class="logout-link">
+                            <i class="fas fa-sign-out-alt"></i> Cerrar Sesión
+                        </a>
+                    </div>
+                </div>
             </nav>
         </div>
     </header>
@@ -39,82 +52,89 @@
             <a href="#productos" class="btn">Ver Nuestros Productos</a>
     </section>
 
+    <!-- MODAL DE PEDIDO -->
     <dialog id="modalPedido" class="modal-estilo">
-        <div class="container-modal">
-            <div class="modal-header">
-                <h2 class="h2"  style="margin: 0;">Pedido de Flores Eternas</h2>
-                <button id="btnCerrarModal" class="close-x">&times;</button>
+    <div class="container-modal">
+        <div class="modal-header">
+            <h2 class="h2" style="margin: 0;">Pedido de Flores Eternas</h2>
+            <button id="btnCerrarModal" class="close-x" type="button">&times;</button>
+        </div>
+
+        <form id="formPedido" class="form-horizontal">
+            <div class="form-group">
+                <label>Tu Nombre</label>
+                <input type="text" id="nombre_cli" required placeholder="Ej: Ana Pérez">
+            </div>
+            <div class="form-group">
+                <label>Tu Teléfono</label>
+                <input type="tel" id="telefono_cli" required placeholder="Ej: 8292095436">
+            </div>
+            <div class="form-group">
+                <label>Tu Correo</label>
+                <input type="email" id="correo" required placeholder="Ej: ana.perez@gmail.com">
             </div>
 
+            <div class="form-group">
+                <label>Tipo de arreglo</label>
+                <select id="tipo_de_arreglo">
+                    <option>Ramo pequeño</option>
+                    <option>Ramo mediano</option>
+                    <option>Ramo grande</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Color</label>
+                <select id="color_de_flores">
+                    <option>Rojo</option>
+                    <option>Rosado</option>
+                    <option>Mixto</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Mensaje de la tarjeta</label>
+                <textarea id="mensaje" required placeholder="Ej: Feliz cumpleaños, te quiero mucho"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Detalles del pedido</label>
+                <textarea id="detalle_adicional" required placeholder="Ej: Quiero el arreglo de 10 rosas, con mariposas"></textarea>
+            </div>
+            <div class="form-group">
+                <label>Fecha de entrega</label>
+                <input type="date" id="fecha_de_entrega" required >
+            </div>
 
-            <div class="logo-reference" style="letter-spacing: 0.3em; text-align: center;">INFINITE FLOWERS</div>
-            <p class="subtitle">Completa el formulario para realizar tu pedido personalizado</p>
+            <hr>
+            <div class="form-group">
+                <label>Nombre de quien recibe</label>
+                <input type="text" id="nombre_destinatario" required placeholder="Ej: María García">
+            </div>
+            <div class="form-group">
+                <label>Teléfono de quien recibe</label>
+                <input type="tel" id="telefono_destinatario" required placeholder="Ej: 8292095436">
+            </div>
+            <div class="form-group">
+                <label>Dirección de Envío</label>
+                <input type="text" id="direccion_envio" required placeholder="Ej: Calle Principal, Número 123">
+            </div>
+            <div class="form-group">
+                <label>Método de Envío</label>
+                <select id="metodo_envio">
+                    <option>Domicilio</option>
+                    <option>Recogida</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Método de Pago</label>
+                <select id="metodo_pago">
+                    <option>Transferencia</option>
+                    <option>Efectivo</option>
+                </select>
+            </div>
 
-<!-- FORMULARIO DENTRO DEL MODAL -->
-            <form id="formPedido" class="form-horizontal">
-                <div class="form-group">
-                    <label>Nombre</label>
-                    <input type="text" id="nombre_cli" required placeholder="Ejemplo: Juana Esperanza">
-                </div>
-
-    <div class="form-group">
-        <label>Teléfono</label>
-        <input type="tel" id="telefono_cli" required placeholder="Ejemplo: 849 568 2458">
+            <button type="submit" class="btn-pedido">Confirmar Pedido</button>
+        </form>
     </div>
-
-    <div class="form-group">
-        <label>Correo</label>
-        <input type="email" id="correo" required placeholder="Ejemplo: correo@ejemplo.com">
-    </div>
-
-<div class="form-group">
-  <label>Tipo de arreglo</label>
-  <select id="tipo_de_arreglo">
-    <option>Ramo pequeño</option>
-    <option>Ramo mediano</option>
-    <option>Ramo grande</option>
-    <option>Caja de rosas</option>
-  </select>
-</div>
-
-<div class="form-group">
-  <label>Color</label>
-  <select id="color_de_flores">
-    <option>Rojo</option>
-    <option>Blanco</option>
-    <option>Rosado</option>
-    <option>Mixto</option>
-  </select>
-</div>
-
-<div class="form-group">
-  <label>Mensaje</label>
-  <textarea id="mensaje" required 
-    placeholder="Ejemplo: Feliz cumpleaños, te quiero mucho 💐"></textarea>
-</div>
-
-<div class="form-group">
-  <label>Detalle</label>
-  <textarea id="detalle" required 
-    placeholder="Ejemplo: Entregar en la mañana, tocar el timbre y avisar por teléfono al llegar."></textarea>
-</div>
-
-<div class="form-group">
-  <label>Fecha entrega</label>
-  <input type="date" id="fecha_de_entrega" required>
-</div>
-
-<div class="form-group">
-  <label>Dirección</label>
-  <input type="text" id="direccion" required 
-    placeholder="Ejemplo: Calle Reforma 123, Col. Centro, CDMX">
-</div>
-
-<button type="submit" class="btn-pedido">Confirmar Pedido</button>
-
-</form>
-        </div>
-    </dialog>
+</dialog>
 
     <style>
         .carousel-container{
@@ -294,9 +314,9 @@
 
 </div>
                     </div>
-                    <p>Inicia sesión para realizar pedidos personalizados. Descubre nuestra colección exclusiva.</p>
+                    <p>Descubre nuestra colección exclusiva.</p>
                     <div class="footer-credits">
-                        <p>Especialistas en flores eternas</p>
+                        <p>Especialistas en flores eternas.</p>
                     </div>
                 </div>
 
@@ -319,24 +339,37 @@
     </footer>
 
     <!-- MODAL -->
-    <div class="modal-overlay" id="modalOverlay">
-        <div class="modal">
-            <button class="modal-close" id="closeModalBtn">&times;</button>
-            <h2>🌸 ¡Bienvenido! 🌸</h2>
-            <p>Descubre nuestras flores eternas y arreglos exclusivos. Regístrate para acceder a promociones especiales.
-            </p>
-
-            <div class="modal-buttons">
-                <a href="registro.php" class="modal-btn primary">Registrarse ahora</a>
-                <div class="modal-divider">o</div>
-                <a href="login.php" class="modal-btn secondary">Iniciar sesión</a>
+   <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" style="max-width: 500px;"> <button class="modal-close" id="closeModalBtn">&times;</button>
+        
+        <h2 style="color: #e91e63;">🌸 Nuestra Identidad 🌸</h2>
+        
+        <div style="text-align: left; margin-top: 20px;">
+            <div style="margin-bottom: 15px;">
+                <h3 style="font-size: 1.1em; color: #333; margin-bottom: 5px;">Misión</h3>
+                <p style="font-size: 14px; color: #666; line-height: 1.5;">
+                    Nos dedicamos a crear flores eternas de alta calidad, porque creemos que cada momento especial merece ser recordado, para brindar a nuestros clientes belleza y recuerdos que perduren en el tiempo.
+                </p>
             </div>
 
-            <p style="margin-top: 15px; font-size: 13px; color: #666;">
-                ¿Ya tienes cuenta? <a href="login.php" style="color: var(--primary-color);">Inicia sesión</a>
-            </p>
+            <div style="margin-bottom: 15px;">
+                <h3 style="font-size: 1.1em; color: #333; margin-bottom: 5px;">Visión</h3>
+                <p style="font-size: 14px; color: #666; line-height: 1.5;">
+                    Ser la empresa líder en flores eternas, reconocida por transformar momentos especiales en recuerdos duraderos y por brindar productos de calidad que emocionen y conecten con las personas.
+                </p>
+            </div>
+
+            <div style="margin-bottom: 20px;">
+                <h3 style="font-size: 1.1em; color: #333; margin-bottom: 5px;">Valores</h3>
+                <ul style="font-size: 14px; color: #666; line-height: 1.5; padding-left: 20px;">
+                    <li><strong>Calidad:</strong> Ofrecer productos duraderos y cuidadosamente elaborados.</li>
+                    <li><strong>Emoción:</strong> Ofrecer productos duraderos y cuidadosamente elaborados.</li>
+                    <li><strong>Innovación:</strong> Buscar siempre nuevas formas de mejorar y sorprender a nuestros clientes.</li>
+                    <li><strong>Compromiso:</strong> Atender con dedicación a cada cliente, asegurando su satisfacción.</li>
+                    <li><strong>Respeto por la naturaleza:</strong> Valorar y cuidar los recursos naturales al crear nuestras flores.</li>
+                </ul>
+            </div>
         </div>
-    </div>
 
     <script>
         document.querySelectorAll('nav a[href^="#"]').forEach(anchor => {
@@ -428,30 +461,19 @@
         }
 
        /*Modal Pedido*/
-        const modal = document.getElementById('modalPedido');
-        const btnAbrir = document.getElementById('btnAbrirModal');
-        const btnCerrar = document.getElementById('btnCerrarModal');
+    const modal = document.getElementById('modalPedido');
+    const btnAbrir = document.getElementById('btnAbrirModal');
+    const btnCerrar = document.getElementById('btnCerrarModal');
 
-        btnAbrir.addEventListener("click", function(){
-            modal.showModal();
-        });
+    if(btnAbrir) btnAbrir.onclick = () => modal.showModal();
+    if(btnCerrar) btnCerrar.onclick = () => modal.close();
 
-        btnCerrar.addEventListener("click", function(){
-            modal.close();
-        });
-
-        modal.addEventListener("click", function(e){
-            if (e.target === modal){
-                modal.close();
-            }
-        });
-
-        <!-- TODO tu contenido HTML arriba -->
-
-    
-    document.getElementById("formPedido").addEventListener("submit", async function(e){
+    document.getElementById("formPedido").addEventListener("submit", async function(e) {
         e.preventDefault();
+        console.log("Iniciando envío...");
 
+    try {
+        // Captura de datos
         const datos = {
             nombre_cli: document.getElementById("nombre_cli").value,
             telefono_cli: document.getElementById("telefono_cli").value,
@@ -459,39 +481,70 @@
             tipo_de_arreglo: document.getElementById("tipo_de_arreglo").value,
             color_de_flores: document.getElementById("color_de_flores").value,
             mensaje: document.getElementById("mensaje").value,
-            detalle: document.getElementById("detalle").value,
+            detalle_adicional: document.getElementById("detalle_adicional").value,
             fecha_de_entrega: document.getElementById("fecha_de_entrega").value,
-            direccion: document.getElementById("direccion").value
+            nombre_destinatario: document.getElementById("nombre_destinatario").value,
+            telefono_destinatario: document.getElementById("telefono_destinatario").value,
+            direccion_envio: document.getElementById("direccion_envio").value,
+            metodo_envio: document.getElementById("metodo_envio").value,
+            metodo_pago: document.getElementById("metodo_pago").value
         };
 
-        try {
+        // 1. Enviar a n8n
+        fetch("https://yureee.app.n8n.cloud/webhook-test/Compra", {
+            method: "POST",
+            headers: {"Content-Type": "application/json"},
+            body: JSON.stringify(datos)
+        });
 
-            // 1️⃣ Guardar en BD
-            await fetch("guardar.php", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(datos)
-            });
+        // 2. Enviar a PHP (usamos FormData para que tu guardar.php lo lea fácil)
+        const formData = new FormData();
+        for (let key in datos) { formData.append(key, datos[key]); }
 
-            // 2️⃣ Enviar a n8n
-            await fetch("https://yureee.app.n8n.cloud/webhook-test/Compra", {
-                method: "POST",
-                headers: {
-                    "Content-Type": "application/json"
-                },
-                body: JSON.stringify(datos)
-            });
+        const response = await fetch("guardar.php", {
+            method: "POST",
+            body: formData
+        });
 
-            alert("✅ Pedido enviado correctamente");
-            document.getElementById("formPedido").reset();
-
-        } catch(error){
-            console.error(error);
-            alert("❌ Error al procesar el pedido");
+        if (response.ok) {
+            const htmlResult = await response.text();
+            document.open();
+            document.write(htmlResult);
+            document.close();
+        } else {
+            alert("Error en el servidor PHP");
         }
-    });
+
+    } catch (error) {
+        console.error("Falta un ID en el HTML o error de JS:", error);
+        alert("Error técnico: Revisa que todos los campos existan.");
+    }
+});
+
+//perfil dropdown
+// Esperamos a que cargue todo el documento
+window.onload = function() {
+    const btn = document.getElementById("btnPerfil");
+    const menu = document.getElementById("menuDesplegable");
+
+    if (btn && menu) {
+        btn.onclick = function(event) {
+            console.log("Clic detectado en el botón");
+            event.stopPropagation(); // Evita que se cierre al mismo tiempo que se abre
+            menu.classList.toggle("active");
+        };
+
+        // Si hacen clic fuera del menú, se cierra
+        document.onclick = function(event) {
+            if (!menu.contains(event.target) && event.target !== btn) {
+                console.log("Clic fuera, cerrando menú");
+                menu.classList.remove("active");
+            }
+        };
+    } else {
+        console.error("No se encontró el botón o el menú. Revisa los IDs en el HTML.");
+    }
+};
     </script>
 
 </body>
