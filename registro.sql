@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1
--- Tiempo de generación: 10-03-2026 a las 18:53:46
+-- Tiempo de generación: 12-05-2026 a las 15:06:27
 -- Versión del servidor: 10.4.32-MariaDB
--- Versión de PHP: 8.0.30
+-- Versión de PHP: 8.2.12
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -29,23 +29,31 @@ SET time_zone = "+00:00";
 
 CREATE TABLE `pedidos` (
   `id` int(11) NOT NULL,
+  `usuario_id` int(11) DEFAULT NULL,
   `nombre_cli` varchar(100) NOT NULL,
-  `telefono_cli` varchar(50) NOT NULL,
-  `tipo_de_arreglo` varchar(10) NOT NULL,
-  `color_de_flores` varchar(10) NOT NULL,
-  `mensaje` varchar(1000) NOT NULL,
-  `detalle` varchar(1000) NOT NULL,
-  `fecha_de_entrega` varchar(10) NOT NULL,
-  `direccion` varchar(300) NOT NULL
+  `telefono_cli` varchar(20) NOT NULL,
+  `correo` varchar(100) NOT NULL,
+  `tipo_de_arreglo` varchar(50) NOT NULL,
+  `color_de_flores` varchar(30) NOT NULL,
+  `mensaje` text DEFAULT NULL,
+  `detalle_adicional` text DEFAULT NULL,
+  `fecha_de_entrega` date NOT NULL,
+  `nombre_destinatario` varchar(100) NOT NULL,
+  `telefono_destinatario` varchar(20) NOT NULL,
+  `direccion_envio` text NOT NULL,
+  `metodo_envio` varchar(50) NOT NULL,
+  `metodo_pago` varchar(50) NOT NULL,
+  `fecha_registro` timestamp NOT NULL DEFAULT current_timestamp(),
+  `estado` varchar(20) DEFAULT 'En Proceso'
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
 -- Volcado de datos para la tabla `pedidos`
 --
 
-INSERT INTO `pedidos` (`id`, `nombre_cli`, `telefono_cli`, `tipo_de_arreglo`, `color_de_flores`, `mensaje`, `detalle`, `fecha_de_entrega`, `direccion`) VALUES
-(1, 'Ismel', '809-564-4356', 'Ramo peque', 'Blanco pur', 'Buenass', 'Brillo', '2026-08-04', 'Mi casa'),
-(2, 'Yureylis Sosa', '8493245676', 'Ramo media', 'Violeta el', 'Amor y sacrificio', '1. corona\r\n1.peluche', '2026-02-07', 'Los cocos de jacagua');
+INSERT INTO `pedidos` (`id`, `usuario_id`, `nombre_cli`, `telefono_cli`, `correo`, `tipo_de_arreglo`, `color_de_flores`, `mensaje`, `detalle_adicional`, `fecha_de_entrega`, `nombre_destinatario`, `telefono_destinatario`, `direccion_envio`, `metodo_envio`, `metodo_pago`, `fecha_registro`, `estado`) VALUES
+(1, 37, 'Lucy', '8096732456', 'rojaslussy66@gmail.com', 'Ramo grande', 'Rosado', 'Feliz cumpleaños mi amor', 'de 10 rosas', '2026-05-24', 'Ismel de la Cruz', '8296700104', 'los cocos de jacagua', 'Recogida', 'Efectivo', '2026-05-11 16:10:41', 'Devuelto'),
+(2, 37, 'Maria', '8095674563', 'rojaslussy66@gmail.com', 'Ramo grande', 'Mixto', 'Feliz cumpleaños mi amor', '10 rosas con mariposas', '2026-05-20', 'Lucy', '8297680987', 'los cocos de jacagua', 'Domicilio', 'Transferencia', '2026-05-11 16:15:30', 'Devuelto');
 
 -- --------------------------------------------------------
 
@@ -58,7 +66,7 @@ CREATE TABLE `usuario` (
   `Nombre` varchar(50) NOT NULL,
   `Apellidos` varchar(50) NOT NULL,
   `Correo` varchar(100) NOT NULL,
-  `Contraseña` varchar(255) NOT NULL
+  `Contraseña` varchar(255) DEFAULT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4 COLLATE=utf8mb4_general_ci;
 
 --
@@ -84,7 +92,9 @@ INSERT INTO `usuario` (`ID`, `Nombre`, `Apellidos`, `Correo`, `Contraseña`) VAL
 (27, 'Julito', 'Peralta', 'julitoperalta@gmail.com', 'julito123'),
 (29, 'Julio', 'Ventura', 'venturajulio@gmail.com', '0000'),
 (30, 'Perla', 'Sosa', 'PerlaSosa@gmail.com', '88888'),
-(33, 'Holfrandy', 'Valerio', 'valerio@gmail.com', '123456');
+(33, 'Holfrandy', 'Valerio', 'valerio@gmail.com', '123456'),
+(36, 'Estelvin', 'Vidal', 'estelvinvidal@gmail.com', '130418'),
+(37, 'Lucy ', 'Rojas', 'rojaslussy66@gmail.com', '12345');
 
 --
 -- Índices para tablas volcadas
@@ -117,7 +127,7 @@ ALTER TABLE `pedidos`
 -- AUTO_INCREMENT de la tabla `usuario`
 --
 ALTER TABLE `usuario`
-  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `ID` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
